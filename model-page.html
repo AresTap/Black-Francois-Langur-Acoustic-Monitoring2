@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SOUND - 数据处理与模型分析</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="model-page.css">
+</head>
+
+<body>
+    <!-- 原有导航栏（完整保留） -->
+    <header>
+        <div class="hh1" style="display: flex;justify-content: space-between;">
+            <div class="hh2" style="display: flex;justify-content: center;">
+                <div class="logo">
+                    <img src="img/monkeylogo.png" alt="无法加载图片">
+                </div>
+                <div class="topic"
+                    style="margin: 15px;color: rgb(34, 33, 33);font-weight: bold;font-size: 20px;width: 600px;">
+                    <p>音察灵猴，声寻其踪：基于深度学习的黑叶猴声学监测研究</p>
+                </div>
+            </div>
+            <div class="nav">
+                <ul class="navlist">
+                    <li class="btli"><a href="home.html">首页</a></li>
+                    <li class="btli"><a href="work.html">我们的工作</a></li>
+                    <li class="btli"><a href="work3yzy.html" class="btli">困难与展望</a>
+                    </li>
+                    <li class="btli"><a href="index.html">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 顶部Banner区（模仿第5张图风格） -->
+    <section class="banner-section">
+        <div class="banner-bg">
+            <img src="img/model-page1.png" alt="雨林背景" class="banner-image">
+            <div class="banner-text">
+                <p class="banner-subtitle">Together, we can decode the voice of nature</p>
+                <h1 class="banner-title">SOUND</h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心内容区 -->
+    <main class="content-main">
+        <!-- 模块1：音频数据处理 -->
+        <section class="section-animate">
+            <div class="container">
+                <h2 class="section-title">音频数据处理</h2>
+                <p class="section-desc">
+                    使用Adobe Audition CC
+                    2018对人工录制音频进行整理，提取成年雄性黑叶猴长距离鸣叫序列，构建训练数据集。通过Sinc算法将44.1kHz人工数据重采样至48kHz，匹配被动声学设备格式。针对野外正样本稀缺问题，通过人工筛选PAM录音、模型迭代筛选扩充数据集，将黑叶猴鸣叫标注为正类，同时标注人类活动声、其他生物声、自然环境声三类负类，完成数据集构建。
+                </p>
+                <div class="figure-card card-hover">
+                    <h4 class="figure-title">图4 人工标注音频分类示例图</h4>
+                    <p class="figure-subtitle">Figure 4 Example of manually annotating audio categories</p>
+                    <img src="img/model-page2.png" alt="音频分类示例图" class="figure-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- 模块2：数据增强与模型输入 -->
+        <section class="section-animate">
+            <div class="container">
+                <h2 class="section-title">音频数据增强与输入模型方法</h2>
+                <p class="section-desc">
+                    针对正样本有限问题，引入时域掩蔽、频域掩蔽、音频加速、背景加噪四类数据增强策略，在保留原始声学结构的前提下扩充样本多样性。采用梅尔频谱图作为模型输入，统一音频时长为12s单声道格式，不足部分通过静音填充，保留原始声景信息以提升模型鲁棒性。
+                </p>
+                <div class="figure-card card-hover">
+                    <h4 class="figure-title">图5 数据增强方法</h4>
+                    <p class="figure-subtitle">Figure 5 Data augmentation method</p>
+                    <img src="img/model-page3.png" alt="数据增强方法图" class="figure-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- 模块3：模型评价指标 -->
+        <section class="section-animate">
+            <div class="container">
+                <h2 class="section-title">模型评价指标与性能评估方法</h2>
+                <p class="section-desc">
+                    针对黑叶猴鸣叫数据不平衡问题，核心采用精确率（Precision）、召回率（Recall）作为评估指标，同时引入F1-score作为综合评价标准，平衡精确率与召回率，全面衡量模型在少样本场景下的识别性能。
+                </p>
+                <div class="formula-card card-hover">
+                    <p>Recall = TP/(TP+FN) ——（1）</p>
+                    <p>Precision = TP/(TP+FP) ——（2）</p>
+                    <p>F1 = 2×(Precision×Recall)/(Precision+Recall) ——（3）</p>
+                    <p class="formula-note">注：TP=真阳性，FN=假阴性（漏检），FP=假阳性（误报）</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 模块4：模型结构与训练 -->
+        <section class="section-animate">
+            <div class="container">
+                <h2 class="section-title">模型结构与训练方法</h2>
+                <p class="section-desc">
+                    采用课题自研DeepADN深度学习模型，核心由声学特征提取层和音频检测网络组成，提取梅尔频谱、Fbank、MFCC三类声学特征。基于预训练PANNS_CNN10模型，通过卷积神经网络提取时频特征，引入注意力池化层聚焦关键信息，针对黑叶猴0-3kHz鸣叫频段添加CBAM自注意力模块，强化目标频段学习，提升模型识别性能。
+                </p>
+                <div class="figure-card card-hover">
+                    <h4 class="figure-title">图6 应用DeepADN模型步骤说明</h4>
+                    <p class="figure-subtitle">Figure 6 Instructions for steps applying the DeepADN model</p>
+                    <img src="img/model-page4.png" alt="模型步骤说明图" class="figure-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- 返回按钮 -->
+        <div class="back-wrapper">
+            <a href="work.html" class="back-btn">← 返回工作界面</a>
+        </div>
+    </main>
+
+    <!-- 导航栏隐藏+滚动入场JS -->
+    <script>
+        // 导航栏隐藏
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            const now = window.scrollY;
+            header.classList.toggle('hide', now > lastScroll && now > 50);
+            lastScroll = now;
+        });
+
+        // 滚动入场动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.section-animate').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>
