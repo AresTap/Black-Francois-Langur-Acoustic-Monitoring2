@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <title>音察灵猴，声寻其踪：基于深度学习的黑叶猴声学监测研究</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles1.css">
+    <script src="1.js"></script>
+    <style>
+        /* 统一卡片列表样式，保证排版整齐 */
+        .c-item-title a {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 90%;
+        }
+        /* 修复年份错位，强制标题和年份在同一行 */
+        .list-group-item .d-flex {
+            align-items: center;
+        }
+        /* Hero区域背景图样式：不遮挡文字，适配版式 */
+        .hero {
+            position: relative;
+            background: #999; /* 保留原灰色底色，作为图片加载失败的兜底 */
+        }
+        .hero-bg-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 0.8; /* 半透明，保证文字清晰可读 */
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1; /* 文字层级高于图片，不被遮挡 */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="hh1" style="display: flex;justify-content: space-between;">
+            <div class="hh2" style="display: flex;justify-content: center;">
+                <div class="logo">
+                    <img src="img/monkeylogo.png" alt="无法加载图片">
+                </div>
+                <div class="topic"
+                    style="margin: 15px;color: rgb(20, 20, 20);font-weight: bold;font-size: 20px;width: 600px;">
+                    <p>音察灵猴，声寻其踪：基于深度学习的黑叶猴声学监测研究</p>
+                </div>
+            </div>
+            <div class="nav">
+                <ul class="navlist">
+                    <li class="btli"><a href="home.html">首页</a></li>
+                    <li class="btli"><a href="work.html">我们的工作</a></li>
+                    <li class="btli"><a href="work3yzy.html" class="btli">困难与展望</a>
+                    </li>
+                    <li class="btli"><a href="index.html">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section (插入背景图) -->
+    <section id="home" class="hero">
+        <!-- 插入背景图，不影响原有文字 -->
+        <img src="img/homemonkey1.png" alt="黑叶猴背景" class="hero-bg-img">
+        <div class="hero-content">
+            <h1 class="hero-title1">保护野生动物</h1>
+            <h1 class="hero-title2">保护地球的未来</h1>
+            <h5 class="hero-subtitle">加入我们，共同为野生动物的保护贡献力量</h5>
+        </div>
+    </section>
+
+    <!-- Project Background Section -->
+    <section id="background" class="background fadeIn">
+        <div class="section-header">
+            <h2>我们正在守护生灵的未来</h2>
+        </div>
+        <div class="text">
+            <div>本项目运用被动声学监测 PAM、Fbank 特征提取、PANNS‑CNN10 模型、CBAM 注意力机制与音频二分类检测技术</div>
+            <p>精准识别黑叶猴 0–3kHz 核心叫声，实现信号增强与目标检测、</p>
+            <p>突破传统监测局限，为黑叶猴种群监测、行为研究与保护决策提供核心数据支撑。</p>
+        </div>
+
+        <div class="content">
+            <div class="slider">
+                <div class="slider-inner">
+                    <img class="slide" src="img/slider1.png" alt="Slide 1">
+                    <img class="slide" src="img/slider2.png" alt="Slide 2">
+                    <img class="slide" src="img/slider3.png" alt="Slide 3">
+                </div>
+                <div class="slider-controls">
+                    <span class="prev">&lt;</span>
+                    <span class="next">&gt;</span>
+                </div>
+                <div class="slider-indicators">
+                    <span class="active"></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="text1">
+                <p>黑叶猴为中国特有国家一级保护动物、IUCN 濒危物种，主要栖息于广西、贵州喀斯特石山地区。受栖息地破碎化、人类活动干扰与气候变化影响，部分种群已局部灭绝，生存形势严峻。传统人工追踪成本高、易惊扰猴群、难以长期连续监测，电子项圈等方式具有侵入性伤害风险，亟需非干扰、可持续的监测方案。
+                </p>
+                <br>
+                <p>我们采用 PAM 被动声学监测 + Fbank 特征提取 + PANNS‑CNN10 模型 + CBAM 注意力机制 + 音频二分类 / 检测技术，全程非侵入、不干扰猴群自然行为，可 24 小时野外自动录音，完美适配喀斯特石山复杂环境，高效解决黑叶猴警惕性高、活动隐蔽、难以近距离追踪的监测难题。
+                </p>
+                <br>
+                <p>目前已实现黑叶猴长距离鸣叫高效识别，召回率 97.1%、精确率 92.1%，大幅降低人工数据筛选工作量；未来可实现稳定的叫声检测与种群监测，为黑叶猴种群动态追踪、栖息地保护、预警干预提供坚实技术支撑，推动保护工作从经验驱动转向数据智能驱动，为我国珍稀濒危灵长类保护提供可复制、可推广的实用方案。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container py-2">
+        <div class="row g-2" style="display: flex;justify-content: center;margin: 0 20px;">
+            <!-- 左侧：研究文章 -->
+            <div class="col-lg-6">
+                <div class="bg-white shadow p-3">
+                    <span class="fs-3 pb-1 text-success" style="border-bottom: solid 3px #198754">研究文章</span>
+                    <div class="w-100 fw-light pt-2">
+                        <ul class="list-group list-group-flush w-100">
+                            <li class="list-group-item py-2 px-0 border-top-0 border-bottom">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="text-truncate c-item-title">
+                                        <a href="https://www.frontiersin.org/articles/10.3389/fvets.2024.1376265/full" target="_blank">Analysis of mortality in François’ langurs...16-year review</a>
+                                    </div>
+                                    <div style="min-width: 72px; text-align: right">
+                                        <small>2024</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item py-2 px-0 border-top-0 border-bottom">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="text-truncate c-item-title">
+                                        <a href="https://www.wwf.org.uk/sites/default/files/2019-04/Acousticmonitoring-WWF-guidelines.pdf" target="_blank">Passive acoustic monitoring in ecology and conservation</a>
+                                    </div>
+                                    <div style="min-width: 72px; text-align: right">
+                                        <small>2017</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item py-2 px-0 border-top-0 border-bottom">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="text-truncate c-item-title">
+                                        <a href="https://kns.cnki.net/kcms2/article/abstract?v=FFXUSKHsLlZzkBdD0O4CVY4LPKQN8nKdY22lhd7sWFYrvypzV-AnoZAne6ZMY6gKxws65n5aJs3sam7Haa-mXk2fWRPOkEcF4xZh2evIpx-Ek55fXco82auvTqU5L1dyu-NttYsYndrL0rNa8156Kdz0x3b-E3gtOA7Aypvlk3qpD-lVKHZuyfJ9rZbJOaGJ2Y0buLMC4OXJwa0GQNRZfQ==" target="_blank">Active sampling as an information seeking strategy...</a>
+                                    </div>
+                                    <div style="min-width: 72px; text-align: right">
+                                        <small>2024</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item py-2 px-0 border-top-0 border-bottom">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="text-truncate c-item-title">
+                                        <a href="https://kns.cnki.net/kcms2/article/abstract?v=FFXUSKHsLlYYn5ZZKFR22b0hi7bHdEcYw-Uz6AQ4ylcARpbNzk4kVjbPF961kesk0VSzQDSa9UuN9sXNz6bow1qn3Wdq_i1luFQ4UuqnkPhf7IpKPityNdQgUZwh7k2Hpor80Qw8Uta36SYunQECj4AI_6WnevBC0QHnEtYXLg6q024DS5hEdtl9OC0Etluo&uniplatform=NZKPT&language=CHS" target="_blank">Experimental evidence for limited vocal recognition...</a>
+                                    </div>
+                                    <div style="min-width: 72px; text-align: right">
+                                        <small>2010</small>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧：图片&视频 -->
+            <div class="col-lg-6">
+                <div class="bg-white shadow p-3">
+                    <span class="fs-3 pb-1 text-success" style="border-bottom: solid 3px #198754">图片&视频</span>
+                    <div class="w-100 fw-light pt-2">
+                        <ul class="list-group list-group-flush w-100">
+                            <li class="list-group-item py-2 px-0 border-top-0 border-bottom">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="text-truncate c-item-title">
+                                        <a href="https://tv.cctv.cn/2024/09/16/VIDED9gtNvkhMaBdOLBy8oVQ240916.shtml" target="_blank">《道德观察》20240915 麻阳河的“黑叶猴王”</a>
+                                    </div>
+                                    <div style="min-width: 72px; text-align: right">
+                                        <small>2024</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item py-2 px-0 border-top-0 border-bottom">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="text-truncate c-item-title">
+                                        <a href="https://tv.cctv.cn/2022/03/17/VIDEhpNtifBWQ40IiBx0kAze220317.shtml" target="_blank">[远方的家]贵州麻阳河 猴王洞初探黑叶猴</a>
+                                    </div>
+                                    <div style="min-width: 72px; text-align: right">
+                                        <small>2022</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="list-group-item py-2 px-0 border-top-0 border-bottom">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="text-truncate c-item-title">
+                                        <a href="https://tv.cctv.cn/2022/03/17/VIDE7ExL92pRTmyXFYsyt2iU220317.shtml" target="_blank">《远方的家》贵州麻阳河 麻阳河寻猴记</a>
+                                    </div>
+                                    <div style="min-width: 72px; text-align: right">
+                                        <small>2022</small>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sliderInner = document.querySelector('.slider-inner');
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.querySelector('.prev');
+            const nextBtn = document.querySelector('.next');
+            const indicators = document.querySelectorAll('.slider-indicators span');
+
+            let currentSlide = 0;
+            let isPlaying = true;
+            let slideInterval;
+            const SLIDE_DURATION = 3000;
+
+            function initSlider() {
+                sliderInner.style.width = `${slides.length * 100}%`;
+                startAutoPlay();
+                goToSlide(currentSlide);
+            }
+
+            function goToSlide(index) {
+                if (index < 0) index = slides.length - 1;
+                if (index >= slides.length) index = 0;
+                currentSlide = index;
+                const offset = -currentSlide * (100 / slides.length);
+                sliderInner.style.transform = `translateX(${offset}%)`;
+                updateIndicators();
+            }
+
+            function updateIndicators() {
+                indicators.forEach((indicator, i) => {
+                    indicator.classList.toggle('active', i === currentSlide);
+                });
+            }
+
+            function nextSlide() { goToSlide(currentSlide + 1); }
+            function prevSlide() { goToSlide(currentSlide - 1); }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                slideInterval = setInterval(() => { if (isPlaying) nextSlide(); }, SLIDE_DURATION);
+            }
+
+            function stopAutoPlay() { clearInterval(slideInterval); }
+            function resetAutoPlay() { stopAutoPlay(); startAutoPlay(); }
+
+            prevBtn.addEventListener('click', () => { prevSlide(); resetAutoPlay(); });
+            nextBtn.addEventListener('click', () => { nextSlide(); resetAutoPlay(); });
+            indicators.forEach((indicator, i) => {
+                indicator.addEventListener('click', () => { goToSlide(i); resetAutoPlay(); });
+            });
+
+            sliderInner.parentElement.addEventListener('mouseenter', () => { isPlaying = false; });
+            sliderInner.parentElement.addEventListener('mouseleave', () => { isPlaying = true; });
+            initSlider();
+        });
+
+        window.addEventListener('scroll', function () {
+            var workSection = document.querySelector('#team');
+            if (workSection) {
+                var position = workSection.getBoundingClientRect();
+                if (position.top < window.innerHeight) {
+                    workSection.classList.add('fadeIn');
+                }
+            }
+        });
+    </script>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>© 黑头叶猴监测项目</p>
+    </footer>
+    <script>
+        let isAutoScrolling = false;
+        window.addEventListener('wheel', function (e) {
+            const currentTop = window.scrollY;
+            if (currentTop < 50 && e.deltaY > 0 && !isAutoScrolling) {
+                isAutoScrolling = true;
+                window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+                setTimeout(() => { isAutoScrolling = false; }, 800);
+            }
+        }, { passive: false });
+
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', function () {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > lastScrollTop && currentScroll > 50) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            lastScrollTop = currentScroll;
+        });
+    </script>
+</body>
+
+</html>

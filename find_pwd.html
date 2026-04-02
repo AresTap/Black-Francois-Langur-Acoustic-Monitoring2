@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>忘记密码 - 黑头叶猴保护平台</title>
+    <link rel="stylesheet" href="wangye.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <!-- 光影层 -->
+    <div class="light-effects">
+        <div class="glow-circle blue" style="top:20%; left:10%"></div>
+        <div class="glow-circle purple" style="top:70%; right:15%"></div>
+    </div>
+
+    <div class="container">
+        <div class="card-logo">
+            <img src="img/monkeylogo.png" alt="黑头叶猴保护平台">
+        </div>
+        <div class="glassmorphism-card">
+            <!-- 忘记密码表单 -->
+            <div class="form-box find-pwd">
+                <form action="#" onsubmit="event.preventDefault(); resetPassword(); return false;">
+                    <h1 class="hologram-title" style="font-size: 40px;">🔒 找回密码</h1>
+
+                    <div class="input-box">
+                        <input type="text" placeholder="守护者ID" class="neon-input" required id="username">
+                        <i class='bx bxs-user'></i>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="password" placeholder="新密码" class="neon-input" required id="newPassword">
+                        <i class='bx bxs-lock-alt'></i>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="password" placeholder="确认新密码" class="neon-input" required id="confirmPassword">
+                        <i class='bx bxs-lock'></i>
+                    </div>
+
+                    <button type="submit" class="btn register-submit-btn">重置密码</button>
+                    <button type="button" class="btn register-btn"
+                        onclick="window.location.href='index.html'">返回登录界面</button>
+                </form>
+            </div>
+
+            <div class="toggle-panel toggle-left">
+                <img src="img/monkey2.png" alt="monkey" class="monkey2-img">
+                <div class="neon-footer"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function resetPassword() {
+            const username = document.getElementById('username').value.trim();
+            const newPwd = document.getElementById('newPassword').value.trim();
+            const confirm = document.getElementById('confirmPassword').value.trim();
+
+            // 基础校验
+            if (!username) {
+                alert('请输入守护者ID');
+                return;
+            }
+
+            if (!newPwd || !confirm) {
+                alert('请输入新密码和确认密码');
+                return;
+            }
+
+            if (newPwd.length < 6) {
+                alert('新密码长度请至少为 6 位');
+                return;
+            }
+
+            if (newPwd !== confirm) {
+                alert('两次输入的新密码不一致');
+                return;
+            }
+
+            // 读取已注册用户列表
+            let users = JSON.parse(localStorage.getItem('guardians') || '[]');
+
+            // 查找用户
+            const userIndex = users.findIndex(u => u.username === username);
+
+            if (userIndex === -1) {
+                alert('该守护者ID不存在');
+                return;
+            }
+
+            // 更新密码（仅演示用，生产环境绝不能明文存储）
+            users[userIndex].password = newPwd;
+
+            // 保存回 localStorage
+            localStorage.setItem('guardians', JSON.stringify(users));
+
+            alert('密码重置成功！\n请使用新密码登录。');
+
+            // 延迟跳转，避免用户没看清提示
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1200);
+        }
+
+        // 可选：给表单内的回车键也触发重置
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('.find-pwd form');
+            if (form) {
+                form.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        resetPassword();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
