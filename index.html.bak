@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 user-scalable=no">
+    <title>基于深度时空注意力的濒危灵长类声纹识别与生态监测系统</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="img/logo.png" alt="无法加载图片">
+        </div>
+		<div class="nav">
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#background">项目背景</a></li>
+                <li><a href="work.html">我们的工作</a></li>
+                <li><a href="#team">团队成员</a></li>  
+            </ul>
+        </nav>
+		</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>保护野生动物，保护地球的未来</h1>
+            <p>加入我们，共同为野生动物的保护贡献力量</p>
+            <a href="#background" class="btn">了解更多</a>
+        </div>
+    </section>
+
+    <!-- Project Background Section -->
+    <section id="background" class="background">
+        <h2>项目背景</h2>
+        <div class="content">
+            <div class="image">
+                <img src="img/monkey.png" alt="白头叶猴">
+            </div>
+            <div class="text">
+                <p>随着全球野生动物栖息地的减少和非法猎杀行为的增加，越来越多的物种面临灭绝的威胁。白头叶猴作为中国特有的极度濒危物种，其保护和研究工作面临着诸多挑战。由于其栖息地主要位于广西西南部崇左、扶绥和宁明三县交界的石灰岩地带，地形复杂且栖息地严重碎片化，传统的监测方法难以有效实施。白头叶猴对外界变化极为敏感，常保持高度警觉并迅速逃离，这使得近距离观察和追踪变得异常困难。此外，它们通常在黎明和黄昏时分活动，活动范围较大，进一步增加了研究的难度。传统的追踪装置或无线电项圈不仅成本高昂，还可能对动物造成伤害，因此迫切需要一种高效、非侵入式的监测方法。</p>
+				<br>
+                <p>声音交流是白头叶猴社会互动的重要方式，用于维持群体关系、保卫领地、吸引配偶以及躲避捕食者。声音的显著性、灵活性和远距离传播的潜力使其成为白头叶猴最有效的交流方式之一。然而，在自然环境中，白头叶猴的声音往往受到背景噪声的干扰，如风声、水流声和其他动物的叫声，这给声音数据的采集和分析带来了巨大挑战。为了更准确地识别和分析白头叶猴的声音特征，必须对采集到的声音数据进行降噪处理，以去除无关的环境噪声，保留目标声音的有效信息。</p>
+				<br>
+                <p>深度学习算法在声音信号处理领域展现出了强大的潜力，尤其是在降噪任务中。通过构建深度神经网络模型，可以从复杂的背景噪声中提取出目标声音的特征，并实现高效降噪。具体而言，深度学习模型可以通过大量的训练数据学习声音信号的特征分布，从而在输入含噪声音信号时，自动分离出目标声音和背景噪声。这种方法不仅能够显著提高声音数据的质量，还可以为后续的白头叶猴行为分析和种群监测提供可靠的数据支持。</p>
+                <p>我们的项目旨在通过基于深度学习的降噪处理技术为白头叶猴的保护和研究提供了一种创新且高效的手段。通过降噪处理，可以更清晰地捕捉和分析白头叶猴的声音特征，进而了解其行为模式、种群动态和栖息地变化。这种方法不仅降低了传统监测方法对动物的干扰，还能够实现长时间、大范围的连续监测，为制定科学有效的保护策略提供了重要依据</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Members Section -->
+    <section id="team" class="team">
+        <h2>我们的团队</h2>
+		<div class="box">
+			<div class="team-member">
+				<img src="team1.jpg" alt="团队成员1">
+				<h3>李咏豪</h3>
+				<p>队长</p>
+				<p>电子与通信工程学院</p>
+			</div>
+			 <div class="team-member">
+				<img src="team2.jpg" alt="团队成员3">
+				<h3>刘昊</h3>
+				<p>队员</p>
+				<p>电子与通信工程学院</p>
+			</div>
+			<div class="team-member">
+				<img src="team2.jpg" alt="团队成员4">
+				<h3>邓凯元</h3>
+				<p>队员</p>
+				<p>电子与通信工程学院</p>
+			</div>
+			<div class="team-member">
+				<img src="team2.jpg" alt="团队成员5">
+				<h3>杨智勇</h3>
+				<p>队员</p>
+				<p>电子与通信工程学院</p>
+			</div>
+			<div class="team-member">
+				<img src="team2.jpg" alt="团队成员6">
+				<h3>林启聪</h3>
+				<p>队员</p>
+				<p>电子与通信工程学院</p>
+			</div>
+		</div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>团队结语:</h2>
+		<br>
+        <p>叶猴声音降噪绝非简单的“技术清洗”，而是打通生态数据价值链的关键环节——从噪声中挖掘出生物行为的真相，让科技真正服务于自然保护。项目若能结合具体保护场景（如针对保护区痛点），我们坚信这个项目将为守护濒危物种的做出不可磨灭的贡献!</p>
+    </section>
+	<script>
+		function resethtmlfontsize(){
+			document.ddocumentElement.style.fontSize=screen.width /10 +'px';	
+		}
+		resethtmlfontsize();
+		window.onresize = resethtmlfontsize();
+	</script>
+    <!-- Footer Section -->
+    <footer>
+        <p>© 2025 保护野生动物声音降噪项目 | <a href="#">隐私政策</a> | <a href="#">使用条款</a></p>
+    </footer>
+
+</body>
+</html>
+

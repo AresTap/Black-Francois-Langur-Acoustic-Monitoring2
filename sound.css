@@ -1,0 +1,345 @@
+/* 原有导航栏样式（完全保留） */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    transition: transform 0.3s ease;
+    background-color: #e8f5e9;
+}
+
+header.hide {
+    transform: translateY(-100%);
+}
+
+header .logo {
+    height: 60px;
+}
+
+header .logo img {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.nav {
+    align-items: center;
+}
+
+.nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+.nav .btli {
+    position: relative;
+    z-index: 100;
+}
+
+.nav ul li {
+    margin: 8px 30px;
+}
+
+.navlist a {
+    color: rgb(46, 45, 45);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav .droplist {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    background-color: #6ac593;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 1;
+}
+
+.nav .droplist li {
+    text-align: center;
+    padding: 0;
+}
+
+.nav .droplist a {
+    color: rgb(51, 50, 50);
+    padding: 0;
+    text-decoration: none;
+}
+
+.nav .droplist a:hover {
+    background-color: #449280;
+}
+
+.btli:hover .droplist {
+    display: block;
+}
+
+.navlist a:hover {
+    background-color: #4d8d7d;
+    display: block;
+}
+
+.nav::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", "SimHei", sans-serif;
+    background-color: #f0faf4;
+    color: #1a3636;
+    line-height: 1.7;
+    padding-top: 60px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 顶部Banner区（你提供的样式） */
+.banner-section {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.banner-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 500px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.banner-title-wrap {
+    background-color: #f0faf4;
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.banner-title-en {
+    font-size: 48px;
+    font-weight: 900;
+    color: #f48a20;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.banner-title-cn {
+    font-size: 36px;
+    font-weight: bold;
+    color: #10b981;
+}
+
+/* 内容区通用样式 */
+.content-main {
+    padding: 60px 0;
+}
+
+.section-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+    margin-bottom: 110px;
+}
+
+.section-animate.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-title {
+    font-size: 32px;
+    color: #0f5132;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #10b981;
+    display: inline-block;
+}
+
+.sub-title {
+    font-size: 24px;
+    color: #198754;
+    margin: 30px 0 15px;
+}
+
+.section-desc {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    text-indent: 2em;
+    color: #2c3e50;
+}
+
+/* 卡片悬停效果 */
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 表格卡片 */
+.table-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    margin: 40px 0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.table-title {
+    font-size: 20px;
+    color: #0f5132;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.table-subtitle {
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #dee2e6;
+    padding: 12px 8px;
+    text-align: center;
+}
+
+.data-table th {
+    background-color: #e6f4ea;
+    color: #0f5132;
+    font-weight: bold;
+}
+
+.data-table tbody tr:nth-child(even) {
+    background-color: #f8fbf9;
+}
+
+.total-row {
+    background-color: #d1e7dd;
+    font-weight: bold;
+    color: #0f5132;
+}
+
+/* 图片卡片 */
+.figure-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    margin: 40px auto;
+    max-width: 900px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.figure-title {
+    font-size: 20px;
+    color: #0f5132;
+    margin-bottom: 5px;
+}
+
+.figure-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.figure-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.figure-card:hover .figure-img {
+    transform: scale(1.02);
+}
+
+/* 返回按钮 */
+.back-wrapper {
+    text-align: center;
+    margin: 60px 0 30px;
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 14px 36px;
+    background: #10b981;
+    color: white;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: #059669;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+}
+
+/* 响应式适配 */
+@media (max-width: 992px) {
+    .banner-title-en {
+        font-size: 32px;
+    }
+
+    .banner-title-cn {
+        font-size: 24px;
+    }
+
+    .section-title {
+        font-size: 26px;
+    }
+
+    .sub-title {
+        font-size: 20px;
+    }
+
+    .section-desc {
+        font-size: 16px;
+    }
+
+    .table-card,
+    .figure-card {
+        padding: 20px;
+    }
+}

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SOUND - 黑叶猴声学监测数据</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="sound.css">
+</head>
+
+<body>
+    <!-- 原有导航栏（完整保留） -->
+    <header>
+        <div class="hh1" style="display: flex;justify-content: space-between;">
+            <div class="hh2" style="display: flex;justify-content: center;">
+                <div class="logo">
+                    <img src="img/monkeylogo.png" alt="无法加载图片">
+                </div>
+                <div class="topic"
+                    style="margin: 15px;color: rgb(44, 43, 43);font-weight: bold;font-size: 20px;width: 600px;">
+                    <p>音察灵猴，声寻其踪：基于深度学习的黑叶猴声学监测研究</p>
+                </div>
+            </div>
+            <div class="nav">
+                <ul class="navlist">
+                    <li class="btli"><a href="home.html">首页</a></li>
+                    <li class="btli"><a href="work.html">我们的工作</a></li>
+                    <li class="btli"><a href="work3yzy.html" class="btli">困难与展望</a>
+                    </li>
+                    <li class="btli"><a href="index.html">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- 顶部Banner区（你提供的样式） -->
+    <section class="banner-section">
+        <div class="banner-bg">
+            <img src="img/yell.png" alt="黑叶猴鸣叫" class="banner-image">
+        </div>
+        <div class="banner-title-wrap">
+            <h2 class="banner-title-en">LISTEN TO THE VOICE OF NATURE</h2>
+            <p class="banner-title-cn">聆听自然之声 · 守护黑猴之音</p>
+        </div>
+    </section>
+
+    <!-- 核心内容区 -->
+    <main class="content-main">
+        <!-- 模块1：数据采集结果 -->
+        <section class="data-section section-animate">
+            <div class="container">
+                <h2 class="section-title">长距离鸣叫数据模型筛选结果</h2>
+                <p class="section-desc">
+                    通过野外安装的PAM设备录音，我们共采集广西恩城国家级自然保护区与贵州麻阳河国家级自然保护区内20,241个小时的音频数据，共收集到238,476个文件大小共12.1TB的音频数据音频（表1）。
+                </p>
+                <div class="table-card card-hover">
+                    <h4 class="table-title">表1 黑叶猴长距离鸣叫的鸣叫数据集</h4>
+                    <p class="table-subtitle">Table 1 Dataset of long-distance calls of François's Langur</p>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>自然保护区<br>Nature reserve</th>
+                                    <th>PAM设备布设点位<br>PAM device deployment points</th>
+                                    <th>记录时长（小时）<br>Recording duration (h)</th>
+                                    <th>音频文件数<br>Number of audio files</th>
+                                    <th>文件大小<br>File size</th>
+                                    <th>正类文件数<br>Number of positive files</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td rowspan="9">广西恩城国家级自然保护区<br>Guangxi Encheng National Nature Reserve</td>
+                                    <td>AAA001</td>
+                                    <td>1136</td>
+                                    <td>13632</td>
+                                    <td>718.9GB</td>
+                                    <td>57</td>
+                                </tr>
+                                <tr>
+                                    <td>AAA002</td>
+                                    <td>1520</td>
+                                    <td>13824</td>
+                                    <td>729.2GB</td>
+                                    <td>78</td>
+                                </tr>
+                                <tr>
+                                    <td>AAA003</td>
+                                    <td>4064</td>
+                                    <td>48768</td>
+                                    <td>2571.8GB</td>
+                                    <td>187</td>
+                                </tr>
+                                <tr>
+                                    <td>AAA004</td>
+                                    <td>1952</td>
+                                    <td>23424</td>
+                                    <td>1235.3GB</td>
+                                    <td>/</td>
+                                </tr>
+                                <tr>
+                                    <td>AAA005</td>
+                                    <td>1808</td>
+                                    <td>21696</td>
+                                    <td>1144.1GB</td>
+                                    <td>/</td>
+                                </tr>
+                                <tr>
+                                    <td>AAA006</td>
+                                    <td>2240</td>
+                                    <td>26880</td>
+                                    <td>1417.5GB</td>
+                                    <td>151</td>
+                                </tr>
+                                <tr>
+                                    <td>AAA007</td>
+                                    <td>2242</td>
+                                    <td>26904</td>
+                                    <td>1206.7GB</td>
+                                    <td>/</td>
+                                </tr>
+                                <tr>
+                                    <td>AAA008</td>
+                                    <td>1792</td>
+                                    <td>21504</td>
+                                    <td>1134.5GB</td>
+                                    <td>/</td>
+                                </tr>
+                                <tr>
+                                    <td>AAA009</td>
+                                    <td>2112</td>
+                                    <td>25344</td>
+                                    <td>1336.5GB</td>
+                                    <td>/</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="4">贵州麻阳河国家级自然保护区<br>Guizhou Mayang River National Nature Reserve</td>
+                                    <td>BHZ</td>
+                                    <td>352</td>
+                                    <td>4224</td>
+                                    <td>222.8GB</td>
+                                    <td>38</td>
+                                </tr>
+                                <tr>
+                                    <td>XGB</td>
+                                    <td>335</td>
+                                    <td>4020</td>
+                                    <td>211.9GB</td>
+                                    <td>107</td>
+                                </tr>
+                                <tr>
+                                    <td>HWD1</td>
+                                    <td>345</td>
+                                    <td>4140</td>
+                                    <td>218.3GB</td>
+                                    <td>13</td>
+                                </tr>
+                                <tr>
+                                    <td>HWD2</td>
+                                    <td>343</td>
+                                    <td>4116</td>
+                                    <td>217.1GB</td>
+                                    <td>47</td>
+                                </tr>
+                                <tr class="total-row">
+                                    <td colspan="2">总计 Total</td>
+                                    <td>20241</td>
+                                    <td>238476</td>
+                                    <td>12.1TB</td>
+                                    <td>678</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <p class="section-desc">
+                    由于广西研究区域的录音对象均为未习惯化群体，且猴群常活动于山地地形中，鸣叫多出现在山顶或半山腰等具有一定相对高度的地方，从而增加了鸣叫的传播距离，且不同类型的鸣叫在传播距离上存在差异。因此，本研究在数据筛选与裁剪时，仅收集了传播距离较远且信噪比较高的激动鸣叫（图7a）和低吼（图7b）两类鸣叫信号。
+
+                </p>
+            </div>
+        </section>
+
+        <!-- 模块2：鸣叫类型与数据集构建 -->
+        <section class="call-section section-animate">
+            <div class="container">
+                <p class="section-desc">
+                    脉冲声的振幅较低，传播距离有限，未纳入主要分析数据集。此外，我们在进行野外猴群监测时，人耳以及手持录音设备中均未听到过脉冲声信号，并且在对广西区域的PAM录音设备进行人工数据筛选时也未检测到脉冲声音频。且自然环境中存在许多与脉冲声频谱相似的背景噪声（如竹子吹动、鞭炮声及人类活动产生的噪音等），这些噪声可能导致声学模型的误判。因此，数据筛选过程中，我们排除了脉冲声，仅保留了低吼与激动鸣叫的序列数据用于分析。
+                </p>
+                <div class="figure-card card-hover">
+                    <h4 class="figure-title">图7 PAM录音设备录制的激动鸣叫与低吼示例图</h4>
+                    <p class="figure-subtitle">Figure 7 Example roar and wahoo by PAM recording devices</p>
+                    <img src="img/example roar and wahoo.png" alt="黑叶猴鸣叫声谱图" class="figure-img">
+                </div>
+                <p class="section-desc">
+                    通过对人工录制音频裁剪以及PAM原始录音的人工筛查与标注，共构建了一个包含678个有效鸣叫片段的训练数据集。该数据集按7：3的比例随机划分为训练集和测试集，确保模型评估的独立性。在训练阶段，应用了音频加速、时域掩蔽、频域掩蔽及背景加噪等数据增强策略，扩充了4倍的训练集样本量进行模型训练，以应对野外正样本的相对稀缺。
+                </p>
+            </div>
+        </section>
+
+        <!-- 模块3：模型性能 -->
+        <section class="model-section section-animate">
+            <div class="container">
+                <h2 class="section-title">模型性能</h2>
+                <p class="section-desc">
+                    在经过多次的模型调试之后，PANNS_CNN10模型对黑叶猴长距离鸣叫的识别表现出较强的捕捉能力。模型在测试集上，作为核心评估指标，模型的召回率达到97.1%，表示模型在识别“monkey_voice”时漏检率非常低。具体而言，PANNS_CNN10仅将6个“monkey_voice”误判为“noisy”（图8）。同时，模型的精确率为92.1%，F1分数为94.5%（F1-score的趋势范围为[0-1]，越接近1，表示模型的精确率和召回率越平衡，识别性能越好）。
+                </p>
+                <div class="figure-card card-hover">
+                    <h4 class="figure-title">图8 PANNS_CNN10的混淆矩阵</h4>
+                    <p class="figure-subtitle">Figure 8 Confusion matrices for PANNS_CNN10</p>
+                    <img src="img/confusion matrices.png" alt="模型混淆矩阵" class="figure-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- 返回按钮 -->
+        <div class="back-wrapper">
+            <a href="work.html" class="back-btn">← 返回工作页面</a>
+        </div>
+    </main>
+
+    <!-- 导航栏隐藏JS（保留原有功能） -->
+    <script>
+        let lastScroll = 0;
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            const now = window.scrollY;
+            header.classList.toggle('hide', now > lastScroll && now > 50);
+            lastScroll = now;
+        });
+
+        // 滚动入场动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.section-animate').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

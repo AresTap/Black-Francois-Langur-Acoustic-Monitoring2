@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>音察灵猴，声寻其踪 基于深度学习的黑叶猴声学监测研究 - 困难与展望</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles1.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow: hidden;
+            font-family: "SimSun", "STSong", serif;
+        }
+
+        /*我们的工作首页*/
+        /* 导航栏 */
+        .navbar {
+            display: flex;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .navbar .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #001480;
+        }
+
+        .navbar .nav-icons {
+            margin-left: auto;
+            display: flex;
+            gap: 20px;
+            font-size: 1.5rem;
+            color: #001480;
+        }
+
+
+        .snap-container {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            padding-top: 80px;
+            padding-bottom: 0;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .snap-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .full-screen {
+            width: 100%;
+            height: calc(100vh - 0px);
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 120px 50px 80px 50px;
+            scroll-snap-align: start;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .full-screen.active {
+            opacity: 1;
+        }
+
+        .full-screen::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 0;
+        }
+
+        .full-screen img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .note {
+            text-align: center;
+            max-width: 900px;
+            z-index: 1;
+        }
+
+        .future-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 24px;
+            margin-bottom: 22px;
+            text-align: left;
+        }
+
+        .note .title {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: #FFFFFF;
+            letter-spacing: 0.03em;
+            display: block;
+            text-shadow: 0 0 12px rgba(0, 0, 0, 0.8);
+            line-height: 1.1;
+            margin-bottom: 40px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .future-label {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: #FFFFFF;
+            white-space: nowrap;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            min-width: 140px;
+        }
+
+        .future-text {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 24px;
+            font-weight: 300;
+            color: #FFFFFF;
+            line-height: 1.5;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+            flex: 1;
+        }
+
+        .note .text {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 24px;
+            font-weight: 300;
+            color: #FFFFFF;
+            letter-spacing: 0.02em;
+            display: block;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+            line-height: 1.5;
+        }
+
+        .contact {
+            height: calc(100vh - 0px);
+            position: relative;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 50px;
+            overflow: hidden;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .contact.active {
+            opacity: 1;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 0;
+        }
+
+        .contact img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* 左侧黑叶猴 */
+        .contact::after {
+            content: "";
+            position: absolute;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 180px;
+            height: 220px;
+            background-image: url('img/monkey_left.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        /* 右侧黑叶猴（新增伪元素，避免与背景冲突） */
+        .contact .monkey-right {
+            content: "";
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 180px;
+            height: 220px;
+            background-image: url('img/monkey_right.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 1;
+            opacity: 0.9;
+            pointer-events: none;
+        }
+
+        .contact-wrap {
+            position: relative;
+            z-index: 2;
+            max-width: 960px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(60px);
+            filter: blur(4px);
+        }
+
+        .contact.active .contact-wrap {
+            animation: movieCredits 2.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+        }
+
+        @keyframes movieCredits {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        .contact h2 {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 52px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.1em;
+            margin-bottom: 40px;
+            text-shadow: 0 0 20px rgba(255,255,255,0.2);
+            text-transform: uppercase;
+        }
+
+        .contact p {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 22px;
+            color: rgba(255,255,255,0.9);
+            line-height: 2;
+            margin-bottom: 24px;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .contact p.small {
+            font-size: 18px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 30px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2E8B57;
+            color: #FFFFFF;
+            scroll-snap-align: start;
+            height: 80px;
+            font-size: 16px;
+            letter-spacing: 1px;
+        }
+
+        .quick-links {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 90px;
+            z-index: 2;
+        }
+
+        .quick-links a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-size: 22px;
+            letter-spacing: 1px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+
+        .link-icon {
+            width: 36px;
+            height: 36px;
+            font-size: 36px;
+            line-height: 1;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+     <header>
+        <div class="hh1" style="display: flex;justify-content: space-between;">
+            <div class="hh2" style="display: flex;justify-content: center;">
+                <div class="logo">
+                    <img src="img/monkeylogo.png" alt="无法加载图片">
+                </div>
+                <div class="topic"
+                    style="margin: 15px;color: rgb(19, 18, 18);font-weight: bold;font-size: 20px;width: 600px;">
+                    <p>音察灵猴，声寻其踪：基于深度学习的黑叶猴声学监测研究</p>
+                </div>
+            </div>
+            <div class="nav">
+                <ul class="navlist">
+                    <li class="btli"><a href="home.html">首页</a></li>
+                    <li class="btli"><a href="home.html#background">我们的工作</a></li>
+                    <li class="btli"><a href="work.html" class="btli">困难与展望</a>
+                    </li>
+                    <li class="btli"><a href="index.html">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="snap-container">
+        <section class="full-screen active" id="page1">
+            <div class="note">
+                <span class="title">地理位置的挑战</span>
+                <span class="text">黑叶猴栖息于喀斯特石山，地形复杂难接近；猴群警惕隐蔽、叫声易被掩盖，且种群分布破碎，大范围监测难度极大。</span>
+            </div>
+            <div class="quick-links">
+                <a href="#page1">
+                    <span class="link-icon">🌏</span>
+                    地理位置
+                </a>
+                <a href="#page2">
+                    <span class="link-icon">📷</span>
+                    监测方式
+                </a>
+                <a href="#page3">
+                    <span class="link-icon">🔊</span>
+                    噪声干扰
+                </a>
+                <a href="#page4">
+                    <span class="link-icon">🚀</span>
+                    未来展望
+                </a>
+                <a href="#contact">
+                    <span class="link-icon">📝</span>
+                    团队结语
+                </a>
+            </div>
+            <img src="img/location.png" alt="黑头叶猴喀斯特地貌栖息地">
+        </section>
+
+        <section class="full-screen" id="page2">
+            <div class="note">
+                <span class="title">监测方式的局限性</span>
+                <span class="text">被动声学监测需长期不间断工作，受续航、存储、天气与地形限制，人力成本高昂</span>
+            </div>
+            <div class="quick-links">
+                <a href="#page1">
+                    <span class="link-icon">🌏</span>
+                    地理位置
+                </a>
+                <a href="#page2">
+                    <span class="link-icon">📷</span>
+                    监测方式
+                </a>
+                <a href="#page3">
+                    <span class="link-icon">🔊</span>
+                    噪声干扰
+                </a>
+                <a href="#page4">
+                    <span class="link-icon">🚀</span>
+                    未来展望
+                </a>
+                <a href="#contact">
+                    <span class="link-icon">📝</span>
+                    团队结语
+                </a>
+            </div>
+            <img src="img/video1.png" alt="声学监测设备部署">
+        </section>
+
+        <section class="full-screen" id="page3">
+            <div class="note">
+                <span class="title">叫声与噪声干扰</span>
+                <span class="text">叶猴叫声集中在0.5–4kHz，易被风声、雨声、同域物种噪声干扰，信噪比普遍低于-5dB</span>
+            </div>
+            <div class="quick-links">
+                <a href="#page1">
+                    <span class="link-icon">🌏</span>
+                    地理位置
+                </a>
+                <a href="#page2">
+                    <span class="link-icon">📷</span>
+                    监测方式
+                </a>
+                <a href="#page3">
+                    <span class="link-icon">🔊</span>
+                    噪声干扰
+                </a>
+                <a href="#page4">
+                    <span class="link-icon">🚀</span>
+                    未来展望
+                </a>
+                <a href="#contact">
+                    <span class="link-icon">📝</span>
+                    团队结语
+                </a>
+            </div>
+            <img src="img/map.png" alt="叶猴叫声频谱分析">
+        </section>
+
+        <section class="full-screen" id="page4">
+            <div class="note">
+                <h2 class="title">未来展望</h2>
+
+                <div class="future-row">
+                    <div class="future-label">技术优化</div>
+                    <div class="future-text">持续优化物种声学识别模型，建立动态更新的环境噪声特征库，改进PAM设备性能并推动模型轻量化、智能化部署。</div>
+                </div>
+
+                <div class="future-row">
+                    <div class="future-label">数据深化</div>
+                    <div class="future-text">深化野外声学信号挖掘，解析黑叶猴行为与生态关联，为保护决策提供精准数据支撑。</div>
+                </div>
+
+                <div class="future-row">
+                    <div class="future-label">生态应用</div>
+                    <div class="future-text">依托声学监测实时掌握猴群动态，优化栖息地管理与保护决策，量化生态恢复成效并拓展至其他濒危物种监测。</div>
+                </div>
+
+                <div class="future-row">
+                    <div class="future-label">跨域拓展</div>
+                    <div class="future-text">搭建跨区域、跨境保护数据共享网络，开展公众科普，探索生态旅游相关的商业化服务。</div>
+                </div>
+
+                <div class="future-row">
+                    <div class="future-label">长期规划</div>
+                    <div class="future-text">推进“声音方舟”计划，构建AI驱动保护决策系统，推动濒危物种保护向智能化、非侵入化、标准化发展。</div>
+                </div>
+            </div>
+            <div class="quick-links">
+                <a href="#page1">
+                    <span class="link-icon">🌏</span>
+                    地理位置
+                </a>
+                <a href="#page2">
+                    <span class="link-icon">📷</span>
+                    监测方式
+                </a>
+                <a href="#page3">
+                    <span class="link-icon">🔊</span>
+                    噪声干扰
+                </a>
+                <a href="#page4">
+                    <span class="link-icon">🚀</span>
+                    未来展望
+                </a>
+                <a href="#contact">
+                    <span class="link-icon">📝</span>
+                    团队结语
+                </a>
+            </div>
+            <img src="img/future.png" alt="未来展望">
+        </section>
+
+        <!-- —————————————————— 喀斯特云海背景 团队结语 —————————————————— -->
+        <section class="contact" id="contact">
+            <!-- 背景图 -->
+            <img src="img/conclusion.png" alt="喀斯特云海日出">
+            <!-- 右侧黑叶猴 -->
+            <div class="monkey-right"></div>
+            <div class="contact-wrap">
+                <h2>Team Conclusion</h2>
+                <p>黑叶猴声学监测绝非简单的 “数据采集”，而是打通濒危灵长类保护价值链的关键环节 —— 从海量音频中捕捉种群活动的真实节律，让智能技术真正赋能野外保护。</p>
+                <p>项目若能紧密对接喀斯特保护区实际监测痛点，持续优化设备与模型落地应用，我们坚信这项研究将为黑叶猴种群监测、栖息地管理与长期保护，作出不可替代的重要贡献！</p>
+                <p class="small">数据来源：中国广西崇左叶猴国家级自然保护区</p>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 保护野生动物声音降噪项目</p>
+        </footer>
+    </div>
+
+    <script>
+        const snapContainer = document.querySelector('.snap-container');
+        const pages = document.querySelectorAll('.full-screen, .contact');
+        let lastScrollTop = 0;
+
+        function setActivePage() {
+            const scrollTop = snapContainer.scrollTop;
+            const pageHeight = window.innerHeight;
+            const currentPageIndex = Math.round(scrollTop / pageHeight);
+
+            pages.forEach((page, index) => {
+                if (index === currentPageIndex) {
+                    page.classList.add('active');
+                } else {
+                    page.classList.remove('active');
+                }
+            });
+            lastScrollTop = scrollTop;
+        }
+
+        setActivePage();
+
+        snapContainer.addEventListener('scroll', () => {
+            setActivePage();
+        });
+    </script>
+
+</body>
+
+</html>

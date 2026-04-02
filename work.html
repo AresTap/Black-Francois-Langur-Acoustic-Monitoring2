@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>音察灵猴，声寻其踪：基于深度学习的黑叶猴声学监测研究 - 我们的工作</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles1.css">
+</head>
+
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="hh1" style="display: flex;justify-content: space-between;">
+            <div class="hh2" style="display: flex;justify-content: center;">
+                <div class="logo">
+                    <img src="img/monkeylogo.png" alt="无法加载图片">
+                </div>
+                <div class="topic"
+                    style="margin: 15px;color: rgb(26, 25, 25);font-weight: bold;font-size: 20px;width: 600px;">
+                    <p>音察灵猴，声寻其踪：基于深度学习的黑叶猴声学监测研究</p>
+                </div>
+            </div>
+            <div class="nav">
+                <ul class="navlist">
+                    <li class="btli"><a href="home.html">首页</a></li>
+                    <li class="btli"><a href="work.html">我们的工作</a></li>
+                    <li class="btli"><a href="work3yzy.html" class="btli">困难与展望</a>
+                    </li>
+                    <li class="btli"><a href="index.html">退出登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="scroll-container">
+        <!-- 第一页：你的原有首页 -->
+        <div class="page page1">
+            <div class="container">
+                <nav class="navbar">
+                    <div class="logo">黑头叶猴保护</div>
+                    <div class="nav-icons">
+                        <span>☰</span>
+                        <span>🔍</span>
+                    </div>
+                </nav>
+
+                <div class="breadcrumb">
+                    <a href="#">首页</a> &gt; <a href="#">我们的工作</a> &gt; <span>保护项目</span>
+                </div>
+
+                <div class="main-content">
+                    <div class="title-section">
+                        <div class="green-box">
+                            <h1 class="main-title">我们的工作</h1>
+                            <p class="sub-title">用声音监测守护黑头叶猴的未来</p>
+                        </div>
+                    </div>
+                    <div class="image-section">
+                        <img src="img/workmonkey1.png" alt="黑头叶猴">
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">⏰</div>
+                        <div class="stat-number" data-target="20241"></div>
+                        <div class="stat-label">记录时长（小时）</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">🔈</div>
+                        <div class="stat-number" data-target="238476"></div>
+                        <div class="stat-label">音频文件数</div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">📂</div>
+                        <div class="stat-number" data-target="12.1"></div>
+                        <div class="stat-label">文件大小（TB）</div>
+                    </div>
+                </div>
+                <div class="wave-container">
+                    <div class="wave wave-1"></div>
+                    <div class="wave wave-2"></div>
+                    <div class="wave wave-3"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <section class="work">
+            <div class="container">
+                <!-- 左侧橙色箭头装饰 -->
+                <div class="arrow-shape"></div>
+
+                <div class="work-content">
+                    <div class="www">
+                        <!-- 左侧文字 -->
+                        <div class="text-section">
+                            <h1>黑头叶猴现状</h1>
+                            <p class="main-desc">
+                                黑叶猴是世界自然保护联盟（IUCN）红色名录中的濒危（EN）物种，也是中国的国家一级保护动物。目前，全球野生黑叶猴数量不足2000只，其中约1700只分布在中国。
+                                得益于持续的保护努力，多个核心栖息地的种群数量实现了 <span>历史性增长</span>。
+                            </p>
+
+                        </div>
+                        <!-- 右侧图标（保持原有猴子简笔画） -->
+                        <div class="monkey-drawing">
+                            <img src="img/simplemonkey.png" alt="黑头叶猴" style="width: 400px;">
+                        </div>
+                    </div>
+
+                    <!-- 新增：交互式中国地图模块 -->
+                    <div class="map-section">
+                        <h2 style="margin-bottom: 15px; color: #333;">核心栖息地种群分布</h2>
+                        <div id="monkey-map"
+                            style="height: 520px; width: 100%; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                        </div>
+                        <p style="font-size: 0.9em; color: #666; margin-top: 10px;">
+                            鼠标悬停或点击地图标记，可查看各栖息地最新种群信息
+                        </p>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Leaflet CSS 和 JS（建议放在页面 head 或外部引入） -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+        <script>
+            // 初始化地图（中国中心位置）
+            document.addEventListener("DOMContentLoaded", function () {
+                const map = L.map('monkey-map', {
+                    zoomControl: true,
+                    attributionControl: false
+                }).setView([32.5, 105.5], 2); // 中国大致中心，合适缩放级别
+
+                // 添加 OpenStreetMap 瓦片（清晰且免费）
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 12,
+                    minZoom: 4
+                }).addTo(map);
+
+                // 自定义橙色标记图标（与主题色一致）
+                const orangeIcon = L.divIcon({
+                    className: 'custom-marker',
+                    html: '<div style="background:#FF6600; width:18px; height:18px; border-radius:50%; border:3px solid white; box-shadow:0 2px 8px rgba(255,102,0,0.6);"></div>',
+                    iconSize: [24, 24],
+                    iconAnchor: [12, 12]
+                });
+
+                // 贵州麻阳河（铜仁附近）
+                const mayanghe = L.marker([27.85, 109.15], { icon: orangeIcon }).addTo(map);
+                mayanghe.bindPopup(`
+    <strong>贵州麻阳河国家级自然保护区</strong><br>
+    约550只<br>
+    全球最大的黑头叶猴栖息地<br>
+    数量较30年前增长超一倍
+  `, { closeButton: true, className: 'custom-popup' });
+
+                // 重庆（金佛山/南川附近）
+                const chongqing = L.marker([29.05, 107.05], { icon: orangeIcon }).addTo(map);
+                chongqing.bindPopup(`
+    <strong>重庆金佛山国家级自然保护区</strong><br>
+    超260只<br>
+    呈现小幅增长趋势<br>
+    栖息地质量逐步提高
+  `, { closeButton: true, className: 'custom-popup' });
+
+                // 贵州六盘水野钟
+                const yezhong = L.marker([26.35, 104.85], { icon: orangeIcon }).addTo(map);
+                yezhong.bindPopup(`
+    <strong>贵州六盘水野钟黑叶猴自然保护区</strong><br>
+    151只<br>
+    种群数量较1987年增长超一倍
+  `, { closeButton: true, className: 'custom-popup' });
+
+                // 可选：鼠标移动到标记附近时自动高亮（增强交互）
+                [mayanghe, chongqing, yezhong].forEach(marker => {
+                    marker.on('mouseover', function () {
+                        this.openPopup();
+                    });
+                });
+
+                // 轻微动画：地图加载完成后轻微缩放
+                setTimeout(() => {
+                    map.flyTo([30.5, 106.5], 5.5, { duration: 1.2 });
+                }, 800); 是
+            });
+        </script>
+
+        <!-- 简易图 !-->
+        <!-- ====================== What's New / 最新动态 模块 ====================== -->
+        <section class="whats-new-section">
+            <div class="whats-new-container">
+
+                <div class="section-header">
+                    <span class="decor-line"></span>
+                    <h2 class="section-title">被动声学数据采集方案</h2>
+                    <span class="decor-line"></span>
+                </div>
+
+                <div class="whats-new-content">
+
+                    <!-- 左侧大图+按钮区域 -->
+                    <div class="left-column">
+                        <div class="news-image-wrapper">
+                            <img src="img/workarea.png" alt="广西恩城国家级自然保护区黑叶猴分布图及PAM设备点位图" class="news-main-image">
+                            <div class="image-date">广西恩城国家级自然保护区黑叶猴分布图及PAM设备点位图</div>
+                        </div>
+                        <!-- 按钮移到这里 -->
+                        <a href="sound.html" class="view-more-btn">查看更多相关消息 →</a>
+                    </div>
+                    <!-- 右侧新闻列表 -->
+                    <div class="news-list">
+
+                        <div class="news-item">
+                            <div class="news-date">1.监测点位布设</div>
+                            <h3 class="news-title">2024 年 12 月 —2026 年 1 月在广西恩城国家级自然保护区黑叶猴集中活动区布设 9 个 PAM 监测点位，点位间距大于
+                                1.5 km，避免鸣叫信号重复录制；2026 年 1—2 月在贵州麻阳河国家级自然保护区新增 4 台设备，针对 3 个习惯化猴群开展高质量标注数据采集，设备间距均大于 500
+                                m，实际验证无重复记录现象。</h3>
+                        </div>
+
+                        <div class="news-item">
+                            <div class="news-date">2.数据采集与存储</div>
+                            <h3 class="news-title">采用麓音鸣声记录仪，以 48 kHz 采样率、16 bit 双声道 WAV 格式连续录音，每日 5:00—20:00
+                                覆盖黑叶猴主要活动时段；音频按 5 分钟为单元自动保存，文件名包含设备编号、日期与时间信息，便于数据管理与溯源。</h3>
+                        </div>
+
+                        <div class="news-item">
+                            <div class="news-date">3.野外设备运维</div>
+                            <h3 class="news-title">为保证长期稳定采集，每 15 天对各点位设备进行一次电池更换与存储卡回收更新，支撑持续野外监测工作。
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 简易图 !-->
+        <!-- ====================== What's New / 最新动态 模块 ====================== -->
+        <section class="whats-new-section">
+            <div class="whats-new-container">
+
+                <div class="section-header">
+                    <span class="decor-line"></span>
+                    <h2 class="section-title">人工记录鸣叫数据</h2>
+                    <span class="decor-line"></span>
+                </div>
+
+                <div class="whats-new-content">
+
+                    <!-- 左侧大图区域 -->
+                    <div class="news-image-wrapper">
+                        <img src="img/JJB_5332.png" alt="人工记录设备" class="news-main-image">
+                        <div class="image-date">SONY PCM-D100</div>
+                    </div>
+
+                    <!-- 右侧新闻列表 -->
+                    <div class="news-list">
+
+                        <div class="news-item">
+                            <div class="news-date">1.长期野外跟踪观测</div>
+                            <h3 class="news-title">2025 年 3 月 —2026 年 2 月，对广西恩城国家级自然保护区 “小白” 猴群开展为期一年的定期观测，每月观测 20–25
+                                天，全程跟踪记录猴群从清晨活动至夜间夜宿的全过程，重点采集长距离鸣叫行为。</h3>
+                        </div>
+
+                        <div class="news-item">
+                            <div class="news-date">2.采集方法与设备参数</div>
+                            <h3 class="news-title">采用全事件取样法与随机取样法记录鸣叫事件，使用 SONY PCM‑D100 录音设备，以 44.1kHz/16bit
+                                规格进行录音；采用预录 5 秒缓冲方式，在雄性黑叶猴开始鸣叫时启动录制直至结束，并精确记录每次鸣叫起始时间。</h3>
+                        </div>
+
+                        <div class="news-item">
+                            <div class="news-date">3.历史声纹数据筛选整理</div>
+                            <h3 class="news-title">对 2022 年、2022—2023 年广西梧州黑叶猴繁育中心 9 群猴群的录音数据进行筛选，共整理得到 48
+                                条高质量长距离鸣叫数据，用于后续分析与验证。
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- ====================== PAM 被动声学录制模块 ====================== -->
+        <div class="pam-section">
+            <div class="pam-container">
+
+                <!-- 左侧黄色面板 -->
+                <div class="pam-yellow-panel">
+                    <h2 class="pam-title">PAM 被动声学录制</h2>
+
+                    <div class="pam-options">
+                        <div class="pam-option active" data-target="excited">
+                            ◆ 激动鸣叫
+                        </div>
+                        <div class="pam-option" data-target="low">
+                            ◆ 低吼声
+                        </div>
+                    </div>
+
+                    <a href="model-page.html" class="pam-all-link">查看所有录制类型 ›</a>
+                </div>
+
+                <!-- 右侧视频播放区域（单个轮播） -->
+                <div class="pam-video-panel">
+                    <!-- 激动鸣叫 -->
+                    <div class="carousel-group active" id="excited">
+                        <div class="carousel-slide active">
+                            <video class="pam-video" loop playsinline controls>
+                                <source src="excited1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-slide">
+                            <video class="pam-video" loop playsinline controls>
+                                <source src="excited2.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-slide">
+                            <video class="pam-video" loop playsinline controls>
+                                <source src="excited3.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+
+                    <!-- 低吼声 -->
+                    <div class="carousel-group" id="low">
+                        <div class="carousel-slide">
+                            <video class="pam-video" loop playsinline controls>
+                                <source src="low1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-slide">
+                            <video class="pam-video" loop playsinline controls>
+                                <source src="low2.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="carousel-slide">
+                            <video class="pam-video" loop playsinline controls>
+                                <source src="low3.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn prev">‹</button>
+                    <button class="carousel-btn next">›</button>
+                </div>
+            </div>
+        </div>
+        </section>
+        <style>
+            /* 自定义 popup 样式（更美观、专业） */
+            .custom-popup .leaflet-popup-content-wrapper {
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                font-family: system-ui, -apple-system, sans-serif;
+            }
+
+            .custom-popup .leaflet-popup-tip {
+                background: white;
+            }
+
+            .map-section {
+                margin-top: 30px;
+            }
+        </style>
+
+        <script>
+            const points = document.querySelectorAll('.point');
+            const tooltip = document.querySelector('.tooltip');
+            points.forEach(p => {
+                p.addEventListener('mouseenter', () => {
+                    tooltip.innerText = p.dataset.tip;
+                    tooltip.style.opacity = 1;
+                    tooltip.style.left = p.offsetLeft - 60 + 'px';
+                    tooltip.style.top = p.offsetTop - 40 + 'px';
+                });
+                p.addEventListener('mouseleave', () => {
+                    tooltip.style.opacity = 0;
+                });
+            });
+        </script>
+
+
+        <script>
+            // function resethtmlfontsize(){
+            // 	document.ddocumentElement.style.fontSize=screen.width /10 +'px';	
+            // }
+            // resethtmlfontsize();
+            // window.onresize = resethtmlfontsize();
+
+            window.addEventListener('scroll', function () {
+                var workSection = document.querySelector('#team');
+                var position = workSection.getBoundingClientRect();
+                if (position.top < window.innerHeight) {
+                    workSection.classList.add('fadeIn');
+                }
+            });
+        </script>
+        <!-- Footer Section -->
+        <footer>
+            <p>© 黑头叶猴监测项目</p>
+        </footer>
+        <script>
+            // 流畅数字计数动画（支持整数和小数）
+            function animateValue(element, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+
+                    // 支持小数点
+                    const current = progress * (end - start) + start;
+                    const formatted = Number.isInteger(end)
+                        ? Math.floor(current).toLocaleString('zh-CN')
+                        : current.toFixed(1);
+
+                    element.textContent = formatted;
+
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        element.textContent = Number.isInteger(end)
+                            ? end.toLocaleString('zh-CN')
+                            : end.toFixed(1);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            // 初始化计数动画
+            document.addEventListener("DOMContentLoaded", function () {
+                const statNumbers = document.querySelectorAll('.stat-number');
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const el = entry.target;
+                            const target = parseFloat(el.getAttribute('data-target'));
+                            el.classList.add('counting');
+
+                            // 从 0 开始计数
+                            animateValue(el, 0, target, 1800);   // 1800ms = 1.8秒，流畅自然
+
+                            observer.unobserve(el); // 只执行一次
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                statNumbers.forEach(num => observer.observe(num));
+            });
+        </script>
+</body>
+
+</html>
+
+<script>
+    // 全局记录当前显示的分类和索引
+    let currentGroup = 'excited';
+    let currentIndex = 0;
+
+    // 刷新显示 + 强制只播放当前视频，其他全部暂停
+    function updateSlide() {
+        // 1. 隐藏所有分组
+        document.querySelectorAll('.carousel-group').forEach(g => g.classList.remove('active'));
+        const group = document.getElementById(currentGroup);
+        group.classList.add('active');
+
+        // 2. 获取当前组所有视频
+        const slides = group.querySelectorAll('.carousel-slide');
+
+        // 3. 遍历：只激活当前索引视频，其他全部暂停
+        slides.forEach((slide, i) => {
+            const video = slide.querySelector('video');
+            if (i === currentIndex) {
+                slide.classList.add('active');
+                video.currentTime = 0; // 从头播放
+                video.play();
+            } else {
+                slide.classList.remove('active');
+                video.pause(); // 强制暂停！！！关键！！！
+            }
+        });
+    }
+
+    // 左侧按钮切换大类
+    document.querySelectorAll('.pam-option').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.pam-option').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentGroup = btn.dataset.target;
+            currentIndex = 0;
+            updateSlide();
+        });
+    });
+
+    // 下一个视频
+    document.querySelector('.next').addEventListener('click', () => {
+        const total = document.querySelectorAll(`#${currentGroup} .carousel-slide`).length;
+        currentIndex = (currentIndex + 1) % total;
+        updateSlide();
+    });
+
+    // 上一个视频
+    document.querySelector('.prev').addEventListener('click', () => {
+        const total = document.querySelectorAll(`#${currentGroup} .carousel-slide`).length;
+        currentIndex = (currentIndex - 1 + total) % total;
+        updateSlide();
+    });
+
+    // 初始化
+    updateSlide();
+</script>
+
+<script>
+    // ==============================
+    // 功能1：顶部一次滚动自动翻页
+    // ==============================
+    let isAutoScrolling = false;
+
+    window.addEventListener('wheel', function (e) {
+        const currentTop = window.scrollY;
+
+        // 只在页面最顶部、向下滚动 → 自动翻一页
+        if (currentTop < 50 && e.deltaY > 0 && !isAutoScrolling) {
+            isAutoScrolling = true;
+
+            // 自动滚动一屏高度
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+
+            setTimeout(() => {
+                isAutoScrolling = false;
+            }, 800);
+        }
+    }, { passive: false });
+
+    // ==============================
+    // 功能2：下滑隐藏导航栏，上滑显示
+    // ==============================
+    let lastScrollTop = 0;
+    const header = document.querySelector('header');
+
+    window.addEventListener('scroll', function () {
+        const currentScroll = window.pageYOffset;
+
+        // 向下滚动 → 隐藏
+        if (currentScroll > lastScrollTop && currentScroll > 50) {
+            header.style.transform = 'translateY(-100%)';
+        }
+        // 向上滚动 → 显示
+        else {
+            header.style.transform = 'translateY(0)';
+        }
+
+        lastScrollTop = currentScroll;
+    });
+</script>

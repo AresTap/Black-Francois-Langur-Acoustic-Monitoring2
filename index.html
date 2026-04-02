@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑头叶猴保护平台 - 登录</title>
+    <link rel="stylesheet" href="wangye.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <!-- ======= 新增光影层 ======= -->
+    <div class="light-effects">
+        <div class="glow-circle blue" style="top:20%; left:10%"></div>
+        <div class="glow-circle purple" style="top:70%; right:15%"></div>
+    </div>
+    <!-- 新增视频背景 -->
+    <video class="bg-video" autoplay muted loop playsinline>
+        <source src="./videos/bg-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="container">
+        <div class="card-logo">
+            <img src="img/monkeylogo.png" alt="黑头叶猴保护平台">
+        </div>
+        <div class="glassmorphism-card">
+            <!--<div class="cyber-border"></div>-->
+            <div class="form-box login">
+                <!--<div class="cyber-border"></div>-->
+                <form action="#">
+                    <h1>🐒欢迎来到黑头叶猴保护平台</h1>
+                    <h1 class="hologram-title">守护者认证</h1>
+                    <div class="input-box">
+                        <input type="text" placeholder="守护者ID" class="neon-input" required id="username">
+                        <div class="input-glow"></div>
+                        <i class='bx bxs-user'></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" placeholder="密码" class="neon-input" required id="password">
+                        <i class='bx bxs-lock-alt'></i>
+                    </div>
+                    <div class="forgot-link neon-link">
+                        <a href="find_pwd.html" class="cyber-glow">忘记密码？</a>
+                    </div>
+                    <button class="quantum-btn">
+                        <span class="btn-glow"></span>
+                        <span onclick="verify()">安全登录</a></span>
+                    </button>
+
+                    <p>---还没有守护者账号？---</p>
+                    <!-- 注册按钮，跳转到注册页面 -->
+                    <button class="btn register-btn" onclick="window.location.href='index1.html'">立即注册</button>
+                    <!-- 新增科技说明文字 -->
+                    <div class="neon-footer">
+                        <h4 class="bottom text">音察灵猴，声寻其踪：基于深度学习的黑叶猴声学监测研究</h4>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="toggle-panel toggle-left">
+                <img src="img/monkey.jpg" alt="monkey" class="monkey-image">
+            </div>
+            <div class="toggle">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function verify() {
+            const username = document.getElementById('username')?.value.trim() ?? '';
+            const password = document.getElementById('password')?.value.trim() ?? '';
+
+            if (!username || !password) {
+                alert('请输入守护者ID和密码');
+                return;
+            }
+
+            const guardians = JSON.parse(localStorage.getItem('guardians') || '[]');
+            const user = guardians.find(u => u.username === username && u.password === password);
+
+            if (user) {
+                localStorage.setItem('current_guardian', username);
+                localStorage.setItem('is_logged_in', 'true');
+                alert(`欢迎归来，守护者 ${username}`);
+                setTimeout(() => {
+                    window.location.href = 'home.html'; // 请改为您的实际目标页面
+                }, 800);
+            } else {
+                alert('守护者ID或密码错误，请检查后重试');
+                const pwdInput = document.getElementById('password');
+                if (pwdInput) {
+                    pwdInput.value = '';
+                    pwdInput.focus();
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', e => {
+                    e.preventDefault();
+                    verify();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
