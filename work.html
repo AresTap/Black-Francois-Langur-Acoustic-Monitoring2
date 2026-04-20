@@ -180,6 +180,13 @@
             种群数量较1987年增长超一倍
         `);
 
+                            // 6. 广西崇左
+                            const congzuo = L.marker([22.36, 106.85], { icon: orangeIcon }).addTo(map);
+                            congzuo.bindPopup(`
+            <strong>广西崇左市黑叶猴自然保护区</strong><br>
+            208只<br>
+            占全球黑叶猴种群数量近10%。
+        `);
                             // 7. 鼠标悬停显示
                             [mayanghe, chongqing, yezhong].forEach(marker => {
                                 marker.on('mouseover', function () { this.openPopup(); });
