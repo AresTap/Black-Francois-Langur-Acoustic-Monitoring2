@@ -56,7 +56,7 @@
                     2018对人工录制音频进行整理，提取成年雄性黑叶猴长距离鸣叫序列，构建训练数据集。通过Sinc算法将44.1kHz人工数据重采样至48kHz，匹配被动声学设备格式。针对野外正样本稀缺问题，通过人工筛选PAM录音、模型迭代筛选扩充数据集，将黑叶猴鸣叫标注为正类，同时标注人类活动声、其他生物声、自然环境声三类负类，完成数据集构建。
                 </p>
                 <div class="figure-card card-hover">
-                    <h4 class="figure-title">图4 人工标注音频分类示例图</h4>
+                    <h4 class="figure-title">人工标注音频分类示例图</h4>
                     <p class="figure-subtitle">Figure 4 Example of manually annotating audio categories</p>
                     <img src="img/model-page2.png" alt="音频分类示例图" class="figure-img">
                 </div>
@@ -71,7 +71,7 @@
                     针对正样本有限问题，引入时域掩蔽、频域掩蔽、音频加速、背景加噪四类数据增强策略，在保留原始声学结构的前提下扩充样本多样性。采用梅尔频谱图作为模型输入，统一音频时长为12s单声道格式，不足部分通过静音填充，保留原始声景信息以提升模型鲁棒性。
                 </p>
                 <div class="figure-card card-hover">
-                    <h4 class="figure-title">图5 数据增强方法</h4>
+                    <h4 class="figure-title">数据增强方法</h4>
                     <p class="figure-subtitle">Figure 5 Data augmentation method</p>
                     <img src="img/model-page3.png" alt="数据增强方法图" class="figure-img">
                 </div>
@@ -102,7 +102,7 @@
                     采用课题自研DeepADN深度学习模型，核心由声学特征提取层和音频检测网络组成，提取梅尔频谱、Fbank、MFCC三类声学特征。基于预训练PANNS_CNN10模型，通过卷积神经网络提取时频特征，引入注意力池化层聚焦关键信息，针对黑叶猴0-3kHz鸣叫频段添加CBAM自注意力模块，强化目标频段学习，提升模型识别性能。
                 </p>
                 <div class="figure-card card-hover">
-                    <h4 class="figure-title">图6 应用DeepADN模型步骤说明</h4>
+                    <h4 class="figure-title">应用DeepADN模型步骤说明</h4>
                     <p class="figure-subtitle">Figure 6 Instructions for steps applying the DeepADN model</p>
                     <img src="img/model-page4.png" alt="模型步骤说明图" class="figure-img">
                 </div>
